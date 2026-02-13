@@ -59,9 +59,8 @@ const Hero = () => {
     <section id="hero" className="relative min-h-screen grid md:grid-cols-2 overflow-hidden" ref={sectionRef}>
       <h1
         ref={ghostRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-center w-full z-0 text-dark leading-none"
+        className="pointer-events-none absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-center w-full z-0 text-dark leading-none"
         style={{ fontSize: 'clamp(6rem, 13vw, 12rem)', opacity: 0, letterSpacing: '.02em' }}
-        aria-hidden
       >
         &lt;CODE /&gt;
       </h1>
@@ -149,7 +148,7 @@ const Hero = () => {
             aspectRatio: '1',
             background: 'radial-gradient(circle at 40% 40%, #ff3b1f 0%, #e8280f 55%, #b01f0b 100%)',
             backdropFilter: 'blur(16px)',
-            top: '100%', left: '100%',
+            top: '50%', left: '50%',
             transform: 'translate(-50%,-50%)',
             opacity: 0,
           }}
