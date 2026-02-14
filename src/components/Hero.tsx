@@ -20,47 +20,77 @@ const Hero = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 2.0 })
-    tl.fromTo(ghostRef.current, { opacity: 0, scale: 1.1 }, { opacity: 0.2, scale: 1, duration: 1.2 }, 0)
-      .fromTo([badge1Ref.current, badge2Ref.current], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15 }, 0.3)
-      .fromTo(tagRef.current, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5 }, 0.5)
-      .fromTo(scriptRef.current, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.65 }, 0.65)
-      .fromTo(titleRef.current, { clipPath: 'inset(0 100% 0 0)', opacity: 0 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 0.9 }, 0.75)
-      .fromTo(cardRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 }, 1.0)
-      .fromTo(orbRef.current, { scale: 0, opacity: 0 }, { scale: 1, opacity: 0.8, duration: 1, ease: 'elastic.out(1,.6)' }, 0.2)
-      .fromTo(rightRef.current, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.9 }, 0.4)
-      .fromTo(scrollRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.4)
+
+    tl.fromTo(ghostRef.current,
+      { opacity: 0, scale: 1.1 },
+      { opacity: 0.2, scale: 1, duration: 1.2 }, 0)
+      .fromTo([badge1Ref.current, badge2Ref.current],
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.15 }, 0.3)
+      .fromTo(tagRef.current,
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.5 }, 0.5)
+      .fromTo(scriptRef.current,
+        { opacity: 0, x: -40 },
+        { opacity: 1, x: 0, duration: 0.65 }, 0.65)
+      .fromTo(titleRef.current,
+        { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+        { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 0.9 }, 0.75)
+      .fromTo(cardRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.7 }, 1.0)
+      .fromTo(orbRef.current,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 0.8, duration: 1, ease: 'elastic.out(1,.6)' }, 0.2)
+      .fromTo(rightRef.current,
+        { opacity: 0, x: 60 },
+        { opacity: 1, x: 0, duration: 0.9 }, 0.4)
+      .fromTo(scrollRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 }, 1.4)
 
     gsap.to([badge1Ref.current, badge2Ref.current], {
-      y: -10, duration: 2.8, ease: 'sine.inOut',
-      yoyo: true, repeat: -1, stagger: 0.6
+      y: -10,
+      duration: 2.8,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1,
+      stagger: 0.6,
     })
 
-    const onMove = (e: MouseEvent) => {
-      const xPct = (e.clientX / window.innerWidth - 0.5) * 24
-      const yPct = (e.clientY / window.innerHeight - 0.5) * 14
-      gsap.to(orbRef.current, { x: xPct, y: yPct, duration: 1.6, ease: 'power1.out' })
-    }
-    window.addEventListener('mousemove', onMove)
+    const ctx = gsap.context(() => {
+      const onMove = (e: MouseEvent) => {
+        gsap.to(orbRef.current, {
+          x: (e.clientX / window.innerWidth - 0.5) * 24,
+          y: (e.clientY / window.innerHeight - 0.5) * 14,
+          duration: 1.6,
+          ease: 'power1.out',
+          overwrite: 'auto',
+        })
+      }
+      window.addEventListener('mousemove', onMove)
 
-    // Ghost parallax on scroll
-    const onScroll = () => {
-      const y = window.scrollY * 0.15
-      gsap.set(ghostRef.current, { y })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
+      const onScroll = () => {
+        gsap.set(ghostRef.current, { yPercent: -50, y: window.scrollY * 0.5 })
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
 
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('scroll', onScroll)
-    }
+      return () => {
+        window.removeEventListener('mousemove', onMove)
+        window.removeEventListener('scroll', onScroll)
+      }
+    })
+
+    return () => ctx.revert()
+
   }, [])
 
   return (
     <section id="hero" className="relative min-h-screen grid md:grid-cols-2 overflow-hidden" ref={sectionRef}>
       <h1
         ref={ghostRef}
-        className="pointer-events-none absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-center w-full z-0 text-dark leading-none"
-        style={{ fontSize: 'clamp(6rem, 13vw, 12rem)', opacity: 0, letterSpacing: '.02em' }}
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-center w-full z-0 text-dark leading-none"
+        style={{ fontSize: 'clamp(6rem, 13vw, 12rem)', letterSpacing: '.02em' }}
       >
         &lt;CODE /&gt;
       </h1>

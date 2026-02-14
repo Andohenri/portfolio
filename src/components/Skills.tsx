@@ -40,13 +40,12 @@ const Skills = () => {
     // Cards stagger
     gsap.fromTo('.skill-card', { y: 60, opacity: 0 },
       {
-        y: 0, rotateX: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power1.inOut',
+        y: 0, rotateX: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.inOut',
         scrollTrigger: {
           trigger: '.skills-grid',
-          start: 'top 50%',
+          start: 'top 75%',
           toggleActions: 'play none none reverse',
           onEnter() {
-            // Remplissage des barres décalé
             setTimeout(() => {
               barRefs.current.forEach((bar, i) => {
                 if (bar) bar.style.width = skills[i].pct + '%'

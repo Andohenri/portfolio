@@ -6,6 +6,8 @@ import Hero from "./components/Hero"
 import Footer from "./components/Footer"
 import About from "./components/About"
 import Skills from "./components/Skills"
+import Work from "./components/Work"
+import Contact from "./components/Contact"
 
 const App = () => {
   const [loaded, setLoaded] = useState(false)
@@ -19,6 +21,8 @@ const App = () => {
         <Hero />
         <About />
         <Skills />
+        <Work />
+        <Contact />
 
         <Footer />
       </main>
