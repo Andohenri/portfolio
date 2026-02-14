@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { SiGithub, SiLinkedin, SiX } from 'react-icons/si'
-import { MdMail, MdMailOutline } from 'react-icons/md'
+import { MdMailOutline } from 'react-icons/md'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
