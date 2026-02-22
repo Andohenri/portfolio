@@ -16,7 +16,7 @@
 
   /* Animations */
   --animate-pulse2: pulse2 1.6s ease-in-out infinite;
-  --animate-marquee: marquee 10s linear infinite;
+  --animate-marquee: marquee 15s linear infinite;
   --animate-floatY: floatY 3s ease-in-out infinite;
   --animate-floatY-delay: floatY 3s ease-in-out 1.2s infinite;
   --animate-shimmer: shimmer 3s linear infinite;

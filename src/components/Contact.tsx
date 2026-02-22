@@ -2,39 +2,11 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { SiGithub, SiLinkedin, SiX } from 'react-icons/si'
 import { MdMailOutline } from 'react-icons/md'
+import { fields, socials } from '../constants'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface Social {
-  icon: React.ElementType
-  href: string
-  label: string
-}
-
-interface InputFormField {
-  id: string
-  label: string
-  placeholder: string
-  type?: string
-  colSpan?: boolean
-}
-
-// ── Data ──────────────────────────────────────────────────────────────────────
-const socials: Social[] = [
-  { icon: SiLinkedin, href: '#', label: 'LinkedIn' },
-  { icon: SiX, href: '#', label: 'X' },
-  { icon: SiGithub, href: 'https://github.com/andohenri', label: 'GitHub' },
-]
-
-const fields: InputFormField[] = [
-  { id: 'firstname', label: 'Prénom', placeholder: 'Jean', colSpan: false },
-  { id: 'lastname', label: 'Nom', placeholder: 'Dupont', colSpan: false },
-  { id: 'email', label: 'Email', placeholder: 'jean@example.com', type: 'email' },
-  { id: 'subject', label: 'Sujet', placeholder: 'Nouveau projet' },
-]
 
 const inputCls = [
   'w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4',

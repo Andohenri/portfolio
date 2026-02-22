@@ -2,26 +2,17 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useGSAP } from '@gsap/react'
-import { SiDocker, SiMongodb, SiMysql, SiN8N, SiNodedotjs, SiPostgresql, SiReact, SiTypescript } from 'react-icons/si'
+import { skills } from '../constants'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-const skills = [
-  { icon: SiReact, name: 'React / Next.js', level: 'Avancé', pct: 82, color: '#61dafb' },
-  { icon: SiTypescript, name: 'TypeScript / JavaScript', level: 'Avancé', pct: 78, color: '#3178c6' },
-  { icon: SiNodedotjs, name: 'Node.js / Express', level: 'Avancé', pct: 80, color: '#68a063' },
-  { icon: SiDocker, name: 'Docker / K8s', level: 'Intermédiaire', pct: 65, color: '#2496ed' },
-  { icon: SiPostgresql, name: 'PostgreSQL', level: 'Avancé', pct: 75, color: '#336791' },
-  { icon: SiMongodb, name: 'MongoDB', level: 'Intermédiaire', pct: 68, color: '#4ade80' },
-  { icon: SiMysql, name: 'MySQL', level: 'Avancé', pct: 76, color: '#f59e0b' },
-  { icon: SiN8N, name: 'n8n Automation', level: 'Intermédiaire', pct: 60, color: '#ea4b71' },
-]
 
 const tags = [
-  'React', 'Next.js', 'TypeScript / JavaScript', 'Node.js', 'Express',
-  'Docker', 'Kubernetes', 'PostgreSQL', 'MongoDB', 'MySQL',
-  'n8n', 'REST API', 'Git', 'Tailwind CSS', 'JavaScript',
-  'HTML / CSS', 'Prisma', 'JWT', 'Linux', 'CI/CD',
+  'HTML / CSS', 'Gsap animation',
+  'n8n', 'REST API', 'Git', 'Tailwind CSS',
+  'Prisma', 'JWT', 'Linux', 'CI/CD', 'Agile / Scrum',
+  'WebSockets', 'Testing', 'Microservices',
+  'Caching (Redis)', 'Queues (RabbitMQ)'
 ]
 
 const Skills = () => {
@@ -29,7 +20,6 @@ const Skills = () => {
   const barRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useGSAP(() => {
-    // Header
     gsap.fromTo('.sk-header', { opacity: 0, y: 40 },
       {
         opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
@@ -77,7 +67,7 @@ const Skills = () => {
       </div>
 
       {/* Grid */}
-      <div className="skills-grid grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="skills-grid grid grid-cols-2 md:grid-cols-5 gap-4">
         {skills.map((s, i) => (
           <div key={s.name}
             className="skill-card bg-white/5 border border-white/[.07] rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5  hover:bg-red/10 hover:border-red/30">
@@ -85,8 +75,8 @@ const Skills = () => {
               style={{ background: s.color + '22', border: `1px solid ${s.color}44` }}>
               <s.icon color={s.color} />
             </div>
-            <p className="text-white font-semibold mb-1">{s.name}</p>
-            <p className="text-muted text-xs tracking-widest uppercase mb-3">
+            <p className="text-white hidden sm:block font-semibold mb-1">{s.name}</p>
+            <p className="text-muted hidden sm:block text-xs tracking-widest uppercase mb-3">
               {s.level} &middot; {s.pct}%
             </p>
             <div className="h-px bg-white/10 rounded-full overflow-hidden">
@@ -107,7 +97,7 @@ const Skills = () => {
       <div className="overflow-hidden mt-16 pt-6 border-t border-white/[.07]">
         <div className="animate-marquee flex gap-7 max-w-max">
           {[...tags, ...tags].map((tag, i) => (
-            <div  key={i} className="flex items-center gap-2 text-xs font-semibold tracking-[.12em] uppercase text-white/30 whitespace-nowrap">
+            <div key={i} className="flex items-center gap-2 text-xs font-semibold tracking-[.12em] uppercase text-white/30 whitespace-nowrap">
               <span className="text-red">✦</span>{tag}
             </div>
           ))}

@@ -2,123 +2,11 @@ import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiPostgresql,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiReact,
-  SiMysql,
-  SiDocker,
-  SiN8N,
-} from 'react-icons/si'
 import { FaArrowRight } from 'react-icons/fa'
+import { projects, services } from '../constants'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface TechIcon {
-  icon: React.ElementType
-  color: string
-}
-
-interface Project {
-  id: number
-  cat: string
-  title: string
-  bg: string
-  col: string
-  techIcons: TechIcon[]
-}
-
-interface Service {
-  num: string
-  name: string
-  desc: string
-}
-
-interface ServiceItemProps {
-  item: Service
-}
-
-// ── Data ──────────────────────────────────────────────────────────────────────
-const projects: Project[] = [
-  {
-    id: 1,
-    cat: 'Next.js · TypeScript · PostgreSQL',
-    title: 'App de gestion de tâches',
-    bg: 'from-[#0f172a] to-[#1e3a5f]',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiNextdotjs, color: '#ffffff' },
-      { icon: SiTypescript, color: '#3178c6' },
-      { icon: SiPostgresql, color: '#336791' },
-    ],
-  },
-  {
-    id: 2,
-    cat: 'Node.js · Express · MongoDB',
-    title: 'API REST E-commerce',
-    bg: 'from-[#1a0f2e] to-violet-800',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiNodedotjs, color: '#68a063' },
-      { icon: SiExpress, color: '#ffffff' },
-      { icon: SiMongodb, color: '#4ade80' },
-    ],
-  },
-  {
-    id: 3,
-    cat: 'React · MySQL · Docker',
-    title: 'Dashboard Analytics',
-    bg: 'from-[#0d1b2a] to-[#1a3a5f]',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiReact, color: '#61dafb' },
-      { icon: SiMysql, color: '#f59e0b' },
-      { icon: SiDocker, color: '#2496ed' },
-    ],
-  },
-  {
-    id: 4,
-    cat: 'n8n · Node.js · PostgreSQL',
-    title: "Pipeline d'automatisation",
-    bg: 'from-rose-100 to-pink-200',
-    col: 'text-dark',
-    techIcons: [
-      { icon: SiN8N, color: '#ea4b71' },
-      { icon: SiNodedotjs, color: '#68a063' },
-      { icon: SiPostgresql, color: '#336791' },
-    ],
-  },
-]
-
-const services: Service[] = [
-  {
-    num: '01',
-    name: 'DÉVELOPPEMENT FULLSTACK',
-    desc: "Création d'applications web complètes de A à Z : interfaces React/Next.js côté client, APIs Express/Node.js côté serveur, bases de données PostgreSQL ou MongoDB. Typage strict TypeScript et bonnes pratiques inclus.",
-  },
-  {
-    num: '02',
-    name: 'APIS & BASES DE DONNÉES',
-    desc: "Conception et développement d'APIs RESTful robustes avec Node.js/Express. Modélisation de bases de données relationnelles (PostgreSQL, MySQL) et NoSQL (MongoDB), migrations, ORM Prisma.",
-  },
-  {
-    num: '03',
-    name: 'AUTOMATISATION N8N',
-    desc: "Mise en place de workflows d'automatisation avec n8n : intégrations d'APIs tierces, automatisation de tâches répétitives, traitement de données, notifications et pipelines no-code/low-code.",
-  },
-  {
-    num: '04',
-    name: 'DÉPLOIEMENT DOCKER',
-    desc: "Containerisation d'applications avec Docker et Docker Compose. Configuration d'environnements reproductibles, déploiement sur serveurs VPS, initiation à l'orchestration Kubernetes.",
-  },
-]
-
-// ── ServiceItem ───────────────────────────────────────────────────────────────
 const ServiceItem = ({ item }: ServiceItemProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const bodyRef = useRef<HTMLDivElement>(null)
@@ -190,7 +78,6 @@ const ServiceItem = ({ item }: ServiceItemProps) => {
   )
 }
 
-// ── Work ──────────────────────────────────────────────────────────────────────
 const Work = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const servicesRef = useRef<HTMLDivElement>(null)
@@ -208,7 +95,6 @@ const Work = () => {
       }
     )
 
-    // 2. Cards stagger slide-up
     gsap.fromTo('.work-card', { opacity: 0, y: 80 },
       {
         opacity: 1, y: 0,
@@ -216,13 +102,12 @@ const Work = () => {
         stagger: { amount: 0.45, from: 'start' },
         scrollTrigger: {
           trigger: '.work-grid',
-          start: 'top 80%',
+          start: 'top 60%',
           toggleActions: 'play none none reverse',
         },
       }
     )
 
-    // 3. Services header
     gsap.fromTo(
       '.services-header > *',
       { opacity: 0, y: 24 },
@@ -237,7 +122,6 @@ const Work = () => {
       }
     )
 
-    // 4. Services items : gauche → droite en stagger
     gsap.fromTo(
       '.service-item',
       {
@@ -290,12 +174,11 @@ const Work = () => {
       </div>
 
       {/* Grid projets */}
-      <div className="work-grid grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="work-grid grid grid-cols-1 md:grid-cols-3 gap-5">
         {projects.map((p) => (
           <div
             key={p.id}
-            className={`work-card relative rounded-2xl overflow-hidden cursor-none group
-                        bg-linear-to-br ${p.bg}`}
+            className={`work-card relative rounded-2xl overflow-hidden cursor-none group bg-linear-to-br ${p.bg}`}
             style={{ aspectRatio: '4/3', opacity: 0 }}
           >
             <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-10">

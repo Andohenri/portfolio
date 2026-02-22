@@ -7,6 +7,14 @@ const hrefs = ['#about', '#skills', '#work', '#contact']
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+export const convertToDirectDownload = (driveUrl: string): string => {
+  const match = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/)
+  if (!match) return driveUrl
+  
+  const fileId = match[1]
+  return `https://drive.google.com/uc?export=download&id=${fileId}`
+}
+
 const Navbar = () => {
   useGSAP(() => {
     const navTween = gsap.timeline({
@@ -28,7 +36,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-16 py-5">
       <a href="#hero" className="font-display text-2xl tracking-wider text-dark no-underline hoverable">
-        graf<span className="text-red">.</span>ty
+        <img src="/logo.png" alt="logo" className="h-10 w-10" />
       </a>
 
       <ul className="hidden md:flex gap-10 list-none">
@@ -45,7 +53,7 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <a href="#contact" className="bg-dark text-white px-6 py-2 rounded-full text-[.82rem] font-semibold tracking-widest uppercase no-underline transition-colors duration-300 hover:bg-red hoverable">
+      <a href={convertToDirectDownload(import.meta.env.VITE_CV_LINK!!)} download rel="noreferrer" target="_blank" className="bg-dark text-white px-6 py-2 rounded-full text-[.82rem] font-semibold tracking-widest uppercase no-underline transition-colors duration-300 hover:bg-red hoverable">
         Mon CV
       </a>
     </nav>

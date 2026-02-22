@@ -2,42 +2,10 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { SiDocker, SiN8N, SiNodedotjs, SiPostgresql, SiReact, SiTypescript } from 'react-icons/si'
+import { codeLines, stats, techBadges } from '../constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const stats = [
-  { num: 1, suffix: '+', label: 'An d\'expérience' },
-  { num: 8, suffix: '+', label: 'Projets livrés' },
-  { num: 3, suffix: 'k+', label: 'Commits GitHub' },
-  { num: 8, suffix: '', label: 'Technos maîtrisées' },
-]
-
-const codeLines = [
-  { w: '38%', color: '#61dafb', op: 0.85, x: 0 },
-  { w: '25%', color: '#e2e8f0', op: 0.30, x: 0, },
-  { w: '13%', color: '#7c3aed', op: 0.80, x: 0 },
-  { w: '44%', color: '#fbbf24', op: 0.75, x: 0, },
-  { w: '19%', color: '#4ade80', op: 0.70, x: 0, },
-  { w: '28%', color: '#ff3b1f', op: 0.80, x: 0 },
-  { w: '34%', color: '#e2e8f0', op: 0.25, x: 0, },
-  { w: '50%', color: '#3178c6', op: 0.85, x: 0 },
-  { w: '19%', color: '#68a063', op: 0.80, x: 0, },
-  { w: '38%', color: '#e2e8f0', op: 0.25, x: 0, },
-  { w: '31%', color: '#ea4b71', op: 0.80, x: 0 },
-  { w: '25%', color: '#4ade80', op: 0.50, x: 0, },
-  { w: '63%', color: '#e2e8f0', op: 0.15, x: 0 },
-]
-
-
-const techBadges = [
-  { icon: SiReact, label: 'React', color: '#61dafb' },
-  { icon: SiTypescript, label: 'TypeScript', color: '#3178c6' },
-  { icon: SiNodedotjs, label: 'Node.js', color: '#68a063' },
-  { icon: SiDocker, label: 'Docker', color: '#2496ed' },
-  { icon: SiPostgresql, label: 'PostgreSQL', color: '#336791' },
-  { icon: SiN8N, label: 'n8n', color: '#ea4b71' },
-]
 
 const TerminalCard = () => {
   const cursorRef = useRef(null)
@@ -128,7 +96,7 @@ const TerminalCard = () => {
 const About = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const statRefs = useRef<Array<HTMLSpanElement | null>>([])
-  
+
   useGSAP(() => {
     const el = sectionRef.current
 
@@ -197,13 +165,14 @@ const About = () => {
           className="about-text text-gray-500 leading-relaxed mb-12 max-w-lg"
           style={{ opacity: 0 }}
         >
-          Je m'appelle <strong className="text-dark">Ando Henri</strong>. Développeur Fullstack
-          Junior passionné, je construis des applications web complètes avec{' '}
-          <span className="text-dark font-semibold">React / Next.js</span> côté client et{' '}
-          <span className="text-dark font-semibold">Node.js / Express</span> côté serveur.
-          Curieux et autodidacte, j'apprends vite et j'aime relever des défis techniques —
-          de la modélisation de bases de données à l'automatisation avec{' '}
-          <span className="text-dark font-semibold">n8n</span> et au déploiement Docker.
+          Je m'appelle <strong className="text-dark">RAZAFINATOANDRO Ando Henri</strong>.
+          Développeur Fullstack Junior passionné par la création d'applications web complètes
+          et performantes. Mon approche combine{' '}
+          <span className="text-dark font-semibold">résolution de problèmes</span>, esprit{' '}
+          <span className="text-dark font-semibold">collaboratif</span> et grande{' '}
+          <span className="text-dark font-semibold">adaptabilité</span> face aux nouveaux défis.
+          Curieux et autodidacte, j'apprends vite et je m'épanouis dans des environnements
+          dynamiques où chaque projet est une opportunité de progresser.
         </p>
 
         {/* Stats */}
