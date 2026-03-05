@@ -1,5 +1,5 @@
 import { BiLogoSpringBoot } from 'react-icons/bi';
-import { SiDocker, SiExpo, SiExpress, SiFacebook, SiFlutter, SiLaravel, SiLinkedin, SiMongodb, SiMysql, SiN8N, SiNestjs, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiSpringboot, SiTypescript, SiWhatsapp } from 'react-icons/si'
+import { SiClerk, SiDocker, SiExpo, SiExpress, SiFacebook, SiFlutter, SiLaravel, SiLinkedin, SiMongodb, SiMysql, SiN8N, SiNestjs, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiSpringboot, SiTailwindcss, SiTypescript, SiWhatsapp } from 'react-icons/si'
 
 
 
@@ -74,13 +74,19 @@ export const services: Service[] = [
 export const projects: Project[] = [
   {
     id: 1,
-    cat: 'Next.js · TypeScript · GSAP',
-    title: 'Site vitrine pour presenter une produit',
+    cat: 'Next.js · TypeScript · MongoDB · Vapi · Clerk · shadcn/ui · Tailwind · CodeRabbit',
+    title: 'Bookified. Transformez vos livres en conversations interactives avec l\'IA. Téléversez des PDF et discutez avec vos livres en utilisant la voix',
     bg: 'from-[#0f172a] to-[#1e3a5f]',
+    bgImage: '/bookified.png',
+    liveUrl: 'https://django-bookified.vercel.app/',
     col: 'text-white',
     techIcons: [
       { icon: SiNextdotjs, color: '#ffffff' },
       { icon: SiTypescript, color: '#3178c6' },
+      { icon: SiMongodb, color: '#4ade80' },
+      { icon: SiNodedotjs, color: '#68a063' },
+      { icon: SiClerk, color: '#ffffff' },
+      { icon: SiTailwindcss, color: '#06b6d4' },
     ],
   },
   {

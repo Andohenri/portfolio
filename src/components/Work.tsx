@@ -161,53 +161,85 @@ const Work = () => {
             MES <span className="text-red">PROJETS</span>
           </h2>
         </div>
-        <a
-          href="https://github.com/andohenri"
-          target="_blank"
-          rel="noreferrer"
-          className="bg-dark text-white px-6 py-2 rounded-full text-xs font-semibold
+        <div className='flex flex-col gap-4'>
+          <p className="hidden md:block text-black text-sm leading-relaxed text-right max-w-xs">
+            Certains sont en ligne, d’autres sont encore en démonstration locale (non déployés).
+          </p>
+          <a
+            href="https://github.com/andohenri"
+            target="_blank"
+            rel="noreferrer"
+            className="bg-dark text-white px-6 py-2 rounded-full text-xs font-semibold
                      tracking-widest uppercase no-underline hover:bg-red transition-colors
                      duration-300 self-end hoverable"
-        >
-          GitHub →
-        </a>
+          >
+            GitHub →
+          </a>
+        </div>
       </div>
 
       {/* Grid projets */}
       <div className="work-grid grid grid-cols-1 md:grid-cols-3 gap-5">
-        {projects.map((p) => (
-          <div
-            key={p.id}
-            className={`work-card relative rounded-2xl overflow-hidden cursor-none group bg-linear-to-br ${p.bg}`}
-            style={{ aspectRatio: '4/3', opacity: 0 }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-10">
-              {p.techIcons.map(({ icon: Icon, color }, i) => (
-                <Icon key={i} size={64} style={{ color }} />
-              ))}
-            </div>
+        {projects.map((p) => {
+          const hasBgImage = !!p.bgImage
 
-            <div className="absolute inset-0 bg-linear-to-t from-dark/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-              <div className={p.col}>
-                <p className="text-red text-xs font-semibold tracking-[.15em] uppercase mb-2">
-                  {p.cat}
-                </p>
-                <p className="font-display text-3xl tracking-wide text-white">{p.title}</p>
-
-                <div className="flex items-center gap-3 mt-3">
+          return (
+            <div
+              key={p.id}
+              className={`work-card relative rounded-2xl overflow-hidden cursor-none group ${hasBgImage ? '' : `bg-linear-to-br ${p.bg}`}`}
+              style={{
+                aspectRatio: '4/3',
+                opacity: 0,
+                ...(hasBgImage
+                  ? {
+                    backgroundImage: `url(${p.bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }
+                  : {}),
+              }}
+            >
+              {!hasBgImage && (
+                <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-10">
                   {p.techIcons.map(({ icon: Icon, color }, i) => (
-                    <Icon key={i} size={18} style={{ color }} />
+                    <Icon key={i} size={64} style={{ color }} />
                   ))}
                 </div>
-              </div>
-            </div>
+              )}
 
-            {/* Flèche */}
-            <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
-              <FaArrowRight size={16} strokeWidth={2.5} color="#111" />
+              <div className="absolute inset-0 bg-black/10" />
+
+              <div className="absolute inset-0 bg-linear-to-t from-dark/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                <div className={p.col}>
+                  <p className="text-red text-xs font-semibold tracking-[.15em] uppercase mb-2">
+                    {p.cat}
+                  </p>
+                  <p className="font-display text-xl tracking-wide text-white">{p.title}</p>
+
+                  <div className="flex items-center gap-3 mt-3">
+                    {p.techIcons.map(({ icon: Icon, color }, i) => (
+                      <Icon key={i} size={18} style={{ color }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Flèche */}
+              {p.liveUrl && (
+                <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white flex items-center justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
+
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaArrowRight size={16} strokeWidth={2.5} color="#111" />
+                  </a>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Services */}

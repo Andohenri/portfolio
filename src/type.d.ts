@@ -8,6 +8,8 @@ interface Project {
   cat: string
   title: string
   bg: string
+  bgImage?: string
+  liveUrl?: string
   col: string
   techIcons: TechIcon[]
 }

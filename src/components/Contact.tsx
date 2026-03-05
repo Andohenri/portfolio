@@ -63,6 +63,12 @@ const Contact = () => {
     { scope: sectionRef }
   )
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Logique d'envoi du formulaire (ex: via une API)
+    alert('Message envoyé ! (fonctionnalité à implémenter)')
+  }
+
   return (
     <section
       id="contact"
@@ -128,7 +134,7 @@ const Contact = () => {
       {/* ── RIGHT — Formulaire ── */}
       <form
         className="relative z-10 flex flex-col gap-5"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={handleSubmit}
       >
         {/* Ligne prénom / nom */}
         <div className="grid grid-cols-2 gap-4">
