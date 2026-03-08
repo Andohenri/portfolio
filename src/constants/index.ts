@@ -116,8 +116,9 @@ export const projects: Project[] = [
   {
     id: 4,
     cat: 'Laravel · Node.js · MySQL',
-    title: "Système de ticket événementielle avec vérification QRCode",
+    title: "Système de ticket événementielle avec un scanner de vérification QRCode",
     bg: 'from-slate-900 to-slate-700',
+    bgImage: '/ticket.png',
     col: 'text-white',
     techIcons: [
       { icon: SiLaravel, color: '#ea4b71' },
@@ -128,8 +129,9 @@ export const projects: Project[] = [
   {
     id: 5,
     cat: 'React · Nest · PostgreSQL',
-    title: "Application de mise en relation entre paysans et collecteurs des matières premières",
+    title: "Agri-Connect - Application de mise en relation entre paysans et collecteurs des matières premières",
     bg: 'from-red-900 to-red-700',
+    bgImage: '/agriconnect.png',
     col: 'text-white',
     techIcons: [
       { icon: SiReact, color: '#61dafb' },
@@ -148,7 +150,33 @@ export const projects: Project[] = [
       { icon: SiExpress, color: '#ffffff' },
       { icon: SiMongodb, color: '#4ade80' },
     ],
-  }
+  },
+  {
+    id: 7,
+    cat: 'Next.js · GSAP · Tailwind',
+    title: "Mojito - Site vitrine pour presenter mes competences en integration et en design d'interface utilisateur animée",
+    bg: 'from-green-900 to-green-700',
+    col: 'text-white',
+    bgImage: '/mojito.png',
+    liveUrl: 'https://websites-cocktails.vercel.app/',
+    techIcons: [
+      { icon: SiNextdotjs, color: '#ffffff' },
+      { icon: SiTailwindcss, color: '#06b6d4' },
+    ],
+  },
+  {
+    id: 8,
+    cat: 'Next.js · GSAP · Tailwind',
+    title: "Awward - Site vitrine pour presenter mes competences en integration et en design moderne d'interface utilisateur animée",
+    bg: 'from-green-900 to-green-700',
+    col: 'text-white',
+    bgImage: '/awward.png',
+    liveUrl: 'https://awward-hazel.vercel.app/',
+    techIcons: [
+      { icon: SiNextdotjs, color: '#ffffff' },
+      { icon: SiTailwindcss, color: '#06b6d4' },
+    ],
+  },
 ]
 
 
