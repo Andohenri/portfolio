@@ -1,5 +1,5 @@
 import { BiLogoSpringBoot } from 'react-icons/bi';
-import { SiClerk, SiDocker, SiExpo, SiExpress, SiFacebook, SiFlutter, SiLaravel, SiLinkedin, SiMongodb, SiMysql, SiN8N, SiNestjs, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiSpringboot, SiTailwindcss, SiTypescript, SiWhatsapp } from 'react-icons/si'
+import { SiClerk, SiDocker, SiExpo, SiExpress, SiFacebook, SiFlutter, SiJavascript, SiLaravel, SiLinkedin, SiMongodb, SiMysql, SiN8N, SiNestjs, SiNextdotjs, SiNodedotjs, SiPhp, SiPostgresql, SiReact, SiSpringboot, SiTailwindcss, SiTypescript, SiWhatsapp } from 'react-icons/si'
 
 
 
@@ -81,71 +81,77 @@ export const projects: Project[] = [
     liveUrl: 'https://django-bookified.vercel.app/',
     col: 'text-white',
     techIcons: [
-      { icon: SiNextdotjs, color: '#ffffff' },
       { icon: SiTypescript, color: '#3178c6' },
+      { icon: SiNextdotjs, color: '#ffffff' },
       { icon: SiMongodb, color: '#4ade80' },
-      { icon: SiNodedotjs, color: '#68a063' },
       { icon: SiClerk, color: '#ffffff' },
       { icon: SiTailwindcss, color: '#06b6d4' },
     ],
   },
   {
-    id: 2,
-    cat: 'React · Node.js · Express · MongoDB',
-    title: 'Application E-commerce',
-    bg: 'from-[#1a0f2e] to-violet-800',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiReact, color: '#61dafb' },
-      { icon: SiExpress, color: '#ffffff' },
-      { icon: SiMongodb, color: '#4ade80' },
-    ],
-  },
-  {
-    id: 3,
-    cat: 'React · MySQL · Java · Spring Boot',
-    title: 'Application de messagerie en temps réel',
-    bg: 'from-[#0f2e1a] to-[#1a5f3d]',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiReact, color: '#61dafb' },
-      { icon: SiMysql, color: '#f59e0b' },
-      { icon: SiSpringboot, color: '#6DB33F' },
-    ],
-  },
-  {
-    id: 4,
-    cat: 'Laravel · Node.js · MySQL',
-    title: "Système de ticket événementielle avec un scanner de vérification QRCode",
-    bg: 'from-slate-900 to-slate-700',
-    bgImage: '/ticket.png',
-    col: 'text-white',
-    techIcons: [
-      { icon: SiLaravel, color: '#ea4b71' },
-      { icon: SiNodedotjs, color: '#68a063' },
-      { icon: SiMysql, color: '#f59e0b' },
-    ],
-  },
-  {
     id: 5,
-    cat: 'React · Nest · PostgreSQL',
+    cat: 'Typescript · React · Nest · PostgreSQL',
     title: "Agri-Connect - Application de mise en relation entre paysans et collecteurs des matières premières",
     bg: 'from-red-900 to-red-700',
     bgImage: '/agriconnect.png',
     col: 'text-white',
     techIcons: [
+      { icon: SiTypescript, color: '#3178c6' },
       { icon: SiReact, color: '#61dafb' },
       { icon: SiNestjs, color: '#E0234E' },
       { icon: SiPostgresql, color: '#336791' },
     ],
   },
   {
+    id: 2,
+    cat: 'Typescript · Next.js · GSAP · Tailwind',
+    title: "Mojito - Site vitrine pour presenter mes competences en integration et en design d'interface utilisateur animée",
+    bg: 'from-green-900 to-green-700',
+    col: 'text-white',
+    bgImage: '/mojito.png',
+    liveUrl: 'https://websites-cocktails.vercel.app/',
+    techIcons: [
+      { icon: SiTypescript, color: '#3178c6' },
+      { icon: SiNextdotjs, color: '#ffffff' },
+      { icon: SiTailwindcss, color: '#06b6d4' },
+    ],
+  },
+  {
+    id: 3,
+    cat: 'Typescript · Next.js · GSAP · Tailwind',
+    title: "Awward - Site vitrine pour presenter mes competences en integration et en design moderne d'interface utilisateur animée",
+    bg: 'from-green-900 to-green-700',
+    col: 'text-white',
+    bgImage: '/awward.png',
+    liveUrl: 'https://awward-hazel.vercel.app/',
+    techIcons: [
+      { icon: SiTypescript, color: '#3178c6' },
+      { icon: SiNextdotjs, color: '#ffffff' },
+      { icon: SiTailwindcss, color: '#06b6d4' },
+    ],
+  },
+  {
+    id: 4,
+    cat: 'PHP · Laravel · Node.js · MySQL',
+    title: "Système de ticket événementielle avec un scanner de vérification QRCode",
+    bg: 'from-slate-900 to-slate-700',
+    bgImage: '/ticket.png',
+    col: 'text-white',
+    techIcons: [
+      { icon: SiPhp, color: '#777bb4' },
+      { icon: SiLaravel, color: '#ea4b71' },
+      { icon: SiNodedotjs, color: '#68a063' },
+      { icon: SiMysql, color: '#f59e0b' },
+    ],
+  },
+  {
     id: 6,
-    cat: 'React · Express · MongoDB',
+    cat: 'JavaScript · React · Express · MongoDB',
     title: "Application de reservation des trains en ligne avec des suivis en temps réel",
     bg: 'from-yellow-900 to-yellow-700',
     col: 'text-white',
     techIcons: [
+      { icon: SiJavascript, color: '#f7df1e' },
       { icon: SiReact, color: '#61dafb' },
       { icon: SiExpress, color: '#ffffff' },
       { icon: SiMongodb, color: '#4ade80' },
@@ -153,30 +159,31 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    cat: 'Next.js · GSAP · Tailwind',
-    title: "Mojito - Site vitrine pour presenter mes competences en integration et en design d'interface utilisateur animée",
-    bg: 'from-green-900 to-green-700',
+    cat: 'JavaScript · React · MySQL · Java · Spring Boot',
+    title: 'Application de messagerie en temps réel',
+    bg: 'from-[#0f2e1a] to-[#1a5f3d]',
     col: 'text-white',
-    bgImage: '/mojito.png',
-    liveUrl: 'https://websites-cocktails.vercel.app/',
     techIcons: [
-      { icon: SiNextdotjs, color: '#ffffff' },
-      { icon: SiTailwindcss, color: '#06b6d4' },
+      { icon: SiJavascript, color: '#f7df1e' },
+      { icon: SiReact, color: '#61dafb' },
+      { icon: SiMysql, color: '#f59e0b' },
+      { icon: SiSpringboot, color: '#6DB33F' },
     ],
   },
   {
     id: 8,
-    cat: 'Next.js · GSAP · Tailwind',
-    title: "Awward - Site vitrine pour presenter mes competences en integration et en design moderne d'interface utilisateur animée",
-    bg: 'from-green-900 to-green-700',
+    cat: 'JavaScript · React · Node.js · Express · MongoDB',
+    title: 'Application E-commerce',
+    bg: 'from-[#1a0f2e] to-violet-800',
     col: 'text-white',
-    bgImage: '/awward.png',
-    liveUrl: 'https://awward-hazel.vercel.app/',
     techIcons: [
-      { icon: SiNextdotjs, color: '#ffffff' },
-      { icon: SiTailwindcss, color: '#06b6d4' },
+      { icon: SiJavascript, color: '#f7df1e' },
+      { icon: SiReact, color: '#61dafb' },
+      { icon: SiExpress, color: '#ffffff' },
+      { icon: SiMongodb, color: '#4ade80' },
     ],
   },
+  
 ]
 
 

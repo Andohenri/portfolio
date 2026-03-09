@@ -186,7 +186,7 @@ const Work = () => {
           return (
             <div
               key={p.id}
-              className={`work-card relative rounded-2xl overflow-hidden cursor-none group ${hasBgImage ? '' : `bg-linear-to-br ${p.bg}`}`}
+              className={`work-card relative rounded-2xl overflow-hidden cursor-none group shadow-lg ${hasBgImage ? '' : `bg-linear-to-br ${p.bg}`}`}
               style={{
                 aspectRatio: '4/3',
                 opacity: 0,
@@ -194,7 +194,7 @@ const Work = () => {
                   ? {
                     backgroundImage: `url(${p.bgImage})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    // backgroundPosition: 'start',
                   }
                   : {}),
               }}
@@ -209,7 +209,18 @@ const Work = () => {
 
               <div className="absolute inset-0 bg-black/10" />
 
-              <div className="absolute inset-0 bg-linear-to-t from-dark/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+              <div className="absolute bottom-3 left-3 flex items-center gap-2 z-10">
+                {p.techIcons.map(({ icon: Icon, color }, i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-8 group-hover:opacity-0 transition-opacity duration-300 rounded-lg bg-dark/60 backdrop-blur-sm flex items-center justify-center"
+                  >
+                    <Icon size={16} style={{ color }} />
+                  </div>
+                ))}
+              </div>
+
+              <div className="absolute inset-0 bg-linear-to-t from-dark/85 to-dark/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                 <div className={p.col}>
                   <p className="text-red text-xs font-semibold tracking-[.15em] uppercase mb-2">
                     {p.cat}
