@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# Portfolio - Ando Henri
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111827)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.x-88CE02?logo=greensock&logoColor=111827)](https://gsap.com/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Currently, two official plugins are available:
+Portfolio personnel moderne et interactif pour presenter mon profil de developpeur web/mobile, mes competences, mes services et mes projets reels.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Apercu
 
-## React Compiler
+- Interface one-page avec navigation fluide
+- Animations GSAP (transitions, reveal, parallax)
+- Sections: Hero, About, Skills, Work, Contact
+- Cartes projet avec technologies et liens live
+- Design responsive desktop/mobile
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack Technique
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- GSAP + ScrollTrigger
+- Vercel Speed Insights
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Optimisations Performance
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Lazy loading de sections non critiques
+- Decoupage du bundle (chunks vendor)
+- Images optimisees en WebP
+- Garde-fous pour `prefers-reduced-motion`
+- Reduction d'effets couteux sur appareils tactiles
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Structure Du Projet
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+  components/
+  constants/
+  App.tsx
+  main.tsx
+public/
+  *.webp
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Prerequis:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 20.19+ (recommande)
+- npm 10+
+
+```bash
+npm install
 ```
+
+## Lancement En Local
+
+```bash
+npm run dev
+```
+
+Application disponible sur `http://localhost:5173`.
+
+## Scripts Utiles
+
+```bash
+npm run dev      # Developpement
+npm run build    # Build production
+npm run preview  # Preview build local
+npm run lint     # Verification ESLint
+```
+
+## Variables D'Environnement
+
+Creer un fichier `.env` a la racine:
+
+```bash
+VITE_CV_LINK=https://drive.google.com/file/d/XXXXXXXX/view
+```
+
+## Deploiement (Vercel)
+
+1. Pousser le repository sur GitHub.
+2. Importer le projet dans Vercel.
+3. Build command: `npm run build`.
+4. Output directory: `dist`.
+5. Ajouter les variables d'environnement (ex: `VITE_CV_LINK`).
+6. Deployer.
+
+## Auteur
+
+RAZAFINATOANDRO Ando Henri
+
+- LinkedIn: https://www.linkedin.com/in/ando-henri
+- GitHub: https://github.com/andohenri
+
+## Licence
+
+Ce projet est distribue sous licence MIT.
