@@ -72,6 +72,15 @@ body {
   overflow-x: hidden;
 }
 
+#about,
+#skills,
+#work,
+#contact,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar {
   width: 4px;
@@ -156,10 +165,6 @@ body {
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.skill-bar-inner.filled {
-  /* width set via inline style */
-}
-
 /* ── SERVICE ACCORDION ── */
 .service-body {
   max-height: 0;
@@ -184,6 +189,32 @@ body {
 a,
 button {
   cursor: none;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  body {
+    cursor: auto;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  .cursor-dot,
+  .cursor-ring,
+  .noise {
+    display: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── SECTION LABEL ── */

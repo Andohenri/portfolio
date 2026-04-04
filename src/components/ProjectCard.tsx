@@ -62,13 +62,21 @@ export const ProjectCard = ({ project: p }: Props) => {
       style={{
         aspectRatio: '4/3',
         opacity: 0,
-        backgroundImage: hasBgImage ? `url(${p.bgImage})` : undefined,
-        backgroundSize: 'cover',
       }}
       onMouseEnter={startRaf}
       onMouseMove={onMove}
       onMouseLeave={stopRaf}
     >
+      {hasBgImage && (
+        <img
+          src={p.bgImage}
+          alt={p.title}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+
       {!hasBgImage && (
         <div
           ref={bgRef}

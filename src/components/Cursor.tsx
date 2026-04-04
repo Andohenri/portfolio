@@ -6,27 +6,22 @@ const Cursor = () => {
   const ring = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    let mx: number = 0, my: number = 0, rx: number = 0, ry: number = 0
-    let raf: number
-  
-    const onMove = (e: MouseEvent) => {
-      mx = e.clientX
-      my = e.clientY
-      gsap.set(dot.current, { x: mx, y: my })
-    }
+    const dotX = gsap.quickTo(dot.current, "x", { duration: 0.08, ease: "none" })
+    const dotY = gsap.quickTo(dot.current, "y", { duration: 0.08, ease: "none" })
+    const ringX = gsap.quickTo(ring.current, "x", { duration: 0.22, ease: "power2.out" })
+    const ringY = gsap.quickTo(ring.current, "y", { duration: 0.22, ease: "power2.out" })
 
-    const lerp = () => {
-      rx += (mx - rx) * 0.2
-      ry += (my - ry) * 0.2
-      gsap.set(ring.current, { x: rx, y: ry })
-      raf = requestAnimationFrame(lerp)
+    const onMove = (e: MouseEvent) => {
+      dotX(e.clientX)
+      dotY(e.clientY)
+      ringX(e.clientX)
+      ringY(e.clientY)
     }
 
     const onEnter = () => ring.current?.classList.add('hovered')
     const onLeave = () => ring.current?.classList.remove('hovered')
 
     window.addEventListener('mousemove', onMove)
-    raf = requestAnimationFrame(lerp)
 
     const targets = document.querySelectorAll('a, button, .hoverable')
     targets.forEach(el => {
@@ -36,7 +31,10 @@ const Cursor = () => {
 
     return () => {
       window.removeEventListener('mousemove', onMove)
-      cancelAnimationFrame(raf)
+      targets.forEach(el => {
+        el.removeEventListener('mouseenter', onEnter)
+        el.removeEventListener('mouseleave', onLeave)
+      })
     }
   }, [])
 

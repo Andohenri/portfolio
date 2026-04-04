@@ -77,7 +77,7 @@ export const projects: Project[] = [
     cat: 'Next.js · TypeScript · MongoDB · Vapi · Clerk · shadcn/ui · Tailwind · CodeRabbit',
     title: 'Bookified. Transformez vos livres en conversations interactives avec l\'IA. Téléversez des PDF et discutez avec vos livres en utilisant la voix',
     bg: 'from-[#0f172a] to-[#1e3a5f]',
-    bgImage: '/bookified.png',
+    bgImage: '/bookified.webp',
     liveUrl: 'https://django-bookified.vercel.app/',
     col: 'text-white',
     techIcons: [
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     cat: 'Typescript · React · Nest · PostgreSQL',
     title: "Agri-Connect - Application de mise en relation entre paysans et collecteurs des matières premières",
     bg: 'from-red-900 to-red-700',
-    bgImage: '/agriconnect.png',
+    bgImage: '/agriconnect.webp',
     col: 'text-white',
     techIcons: [
       { icon: SiTypescript, color: '#3178c6' },
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     title: "Mojito - Site vitrine pour presenter mes competences en integration et en design d'interface utilisateur animée",
     bg: 'from-green-900 to-green-700',
     col: 'text-white',
-    bgImage: '/mojito.png',
+    bgImage: '/mojito.webp',
     liveUrl: 'https://websites-cocktails.vercel.app/',
     techIcons: [
       { icon: SiTypescript, color: '#3178c6' },
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     title: "Awward - Site vitrine pour presenter mes competences en integration et en design moderne d'interface utilisateur animée",
     bg: 'from-green-900 to-green-700',
     col: 'text-white',
-    bgImage: '/awward.png',
+    bgImage: '/awward.webp',
     liveUrl: 'https://awward-hazel.vercel.app/',
     techIcons: [
       { icon: SiTypescript, color: '#3178c6' },
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     cat: 'PHP · Laravel · Node.js · MySQL',
     title: "Système de ticket événementielle avec un scanner de vérification QRCode",
     bg: 'from-slate-900 to-slate-700',
-    bgImage: '/ticket.png',
+    bgImage: '/ticket.webp',
     col: 'text-white',
     techIcons: [
       { icon: SiPhp, color: '#777bb4' },

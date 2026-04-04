@@ -36,7 +36,7 @@ const Work = () => {
         stagger: { amount: 0.42, from: 'start' },
         scrollTrigger: {
           trigger: '.work-grid',
-          start: 'top 62%',
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
       }

@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/all'
 import { useGSAP } from '@gsap/react'
 import { skills } from '../constants'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+gsap.registerPlugin(ScrollTrigger)
 
 
 const tags = [
@@ -51,17 +51,13 @@ const Skills = () => {
       duration: 10,
       ease: "linear",
       repeat: -1,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        toggleActions: 'play pause play pause',
+      },
     })
-
-    gsap.fromTo(barRefs.current,
-      { width: 0 },
-      {
-        width: (i) => skills[i].pct + '%',
-        duration: 1.4,
-        ease: "power4.out",
-        stagger: 0.08
-      }
-    )
   },
     { scope: sectionRef }
   )

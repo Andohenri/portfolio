@@ -19,7 +19,12 @@ const Hero = () => {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+    if (prefersReducedMotion || !hasFinePointer) return
+
     let rafId: number
+    let isVisible = true
     let mx = 0, my = 0
     let orbX = 0, orbY = 0
     let b1X = 0, b1Y = 0
@@ -33,6 +38,11 @@ const Hero = () => {
     }
 
     const tick = () => {
+      if (!isVisible) {
+        rafId = requestAnimationFrame(tick)
+        return
+      }
+
       orbX = lerp(orbX, mx * 36, 0.055)
       orbY = lerp(orbY, my * 20, 0.055)
       if (orbRef.current) {
@@ -50,10 +60,19 @@ const Hero = () => {
       rafId = requestAnimationFrame(tick)
     }
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting
+      },
+      { threshold: 0.05 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+
     window.addEventListener('mousemove', onMove)
     rafId = requestAnimationFrame(tick)
 
     return () => {
+      observer.disconnect()
       window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(rafId)
     }

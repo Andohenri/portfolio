@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react'
 import { MdMailOutline } from 'react-icons/md'
 import { fields, socials } from '../constants'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+gsap.registerPlugin(ScrollTrigger)
 
 
 const inputCls = [
@@ -44,12 +44,11 @@ const Contact = () => {
         { opacity: 0, scale: 0.5 },
         { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(2)' }, 0.4)
 
-    gsap.set(bgTextRef.current, { xPercent: -50, yPercent: -60 })
+    gsap.set(bgTextRef.current, { xPercent: -100, yPercent: -50 })
 
-    gsap.fromTo(bgTextRef.current,
-      { x: '-50%' },
+    gsap.to(bgTextRef.current,
       {
-        x: '50%',
+        xPercent: 100,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -78,7 +77,7 @@ const Contact = () => {
       {/* ── BG ghost text ── */}
       <span
         ref={bgTextRef}
-        className="pointer-events-none absolute top-3/5 left-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
+        className="pointer-events-none hidden md:block absolute top-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
         style={{ letterSpacing: '.02em' }}
       >
         HELLO !
@@ -110,7 +109,7 @@ const Contact = () => {
           </a>
 
           {/* Socials */}
-          <div className="flex gap-3">
+          <div className="flex justify-center md:justify-start gap-3">
             {socials.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
