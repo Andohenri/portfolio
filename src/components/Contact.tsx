@@ -44,12 +44,12 @@ const Contact = () => {
         { opacity: 0, scale: 0.5 },
         { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(2)' }, 0.4)
 
-    gsap.set(bgTextRef.current, { xPercent: -50, yPercent: -50 })
+    gsap.set(bgTextRef.current, { xPercent: -50, yPercent: -60 })
 
     gsap.fromTo(bgTextRef.current,
       { x: '-50%' },
       {
-        x: 100,
+        x: '50%',
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -78,7 +78,7 @@ const Contact = () => {
       {/* ── BG ghost text ── */}
       <span
         ref={bgTextRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
+        className="pointer-events-none absolute top-3/5 left-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
         style={{ letterSpacing: '.02em' }}
       >
         HELLO !
@@ -92,8 +92,8 @@ const Contact = () => {
           className="c-heading font-display text-white leading-none mb-8"
           style={{ fontSize: 'clamp(2.8rem,6vw,5.5rem)', opacity: 0 }}
         >
-          LET'S<br />WORK<br />
-          <span className="text-red">TOGETHER.</span>
+          TRAVAILLONS<br />
+          <span className="text-red">ENSEMBLE.</span>
         </h2>
 
         <div className="c-info flex flex-col gap-6">

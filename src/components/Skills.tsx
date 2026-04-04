@@ -45,39 +45,66 @@ const Skills = () => {
         },
       }
     )
+
+    gsap.to(".marquee-track", {
+      xPercent: -50,
+      duration: 10,
+      ease: "linear",
+      repeat: -1,
+    })
+
+    gsap.fromTo(barRefs.current,
+      { width: 0 },
+      {
+        width: (i) => skills[i].pct + '%',
+        duration: 1.4,
+        ease: "power4.out",
+        stagger: 0.08
+      }
+    )
   },
     { scope: sectionRef }
   )
 
   return (
-    <section id="skills" ref={sectionRef} className="bg-dark px-16 py-32 overflow-hidden">
+    <section id="skills" ref={sectionRef} className="bg-dark px-16 py-32 overflow-hidden relative">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,59,31,0.08),transparent_40%)]" />
 
       {/* Header */}
       <div className="sk-header flex justify-between items-end mb-16">
         <div>
-          <p className="section-label text-red">Stack technique</p>
+          <p className="section-label">Expertise</p>
           <h2 className="font-display text-white leading-none"
             style={{ fontSize: 'clamp(2.5rem,5vw,4.2rem)' }}>
-            SKILLS &amp; <span className="text-red">TECH STACK</span>
+            CE QUE JE <span className="text-red">MAÎTRISE</span>
           </h2>
         </div>
         <p className="hidden md:block text-white/40 text-sm leading-relaxed text-right max-w-xs">
-          Fullstack Junior — en apprentissage constant, passionné par les architectures modernes.
+          Conception, développement et optimisation de solutions digitales modernes,
+          pensées pour la performance et l’évolutivité.
         </p>
       </div>
 
       {/* Grid */}
-      <div className="skills-grid grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="skills-grid grid grid-cols-2 md:grid-cols-5 z-10 gap-4">
         {skills.map((s, i) => (
           <div key={s.name}
-            className="skill-card bg-white/5 border border-white/[.07] rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5  hover:bg-red/10 hover:border-red/30">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl mb-4"
+            className="skill-card group
+                        bg-linear-to-b from-white/5 to-transparent
+                        border border-white/6
+                        rounded-2xl p-6
+                        transition-all duration-500
+                        hover:-translate-y-2
+                        hover:border-red/40
+                        hover:shadow-[0_20px_60px_rgba(255,59,31,0.15)]">
+            <div className="md:w-11 h-11 rounded-xl flex items-center justify-center text-2xl mb-4
+  transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
               style={{ background: s.color + '22', border: `1px solid ${s.color}44` }}>
               <s.icon color={s.color} />
             </div>
             <p className="text-white hidden sm:block font-semibold mb-1">{s.name}</p>
             <p className="text-muted hidden sm:block text-xs tracking-widest uppercase mb-3">
-              {s.level} &middot; {s.pct}%
+              {s.level} &middot;
             </p>
             <div className="h-px bg-white/10 rounded-full overflow-hidden">
               <div
@@ -95,7 +122,7 @@ const Skills = () => {
 
       {/* Marquee */}
       <div className="overflow-hidden mt-16 pt-6 border-t border-white/[.07]">
-        <div className="animate-marquee flex gap-7 max-w-max">
+        <div className="marquee-track flex gap-7 max-w-max">
           {[...tags, ...tags].map((tag, i) => (
             <div key={i} className="flex items-center gap-2 text-xs font-semibold tracking-[.12em] uppercase text-white/30 whitespace-nowrap">
               <span className="text-red">✦</span>{tag}

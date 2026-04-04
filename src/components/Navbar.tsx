@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { ScrollTrigger } from "gsap/all"
 
-const links = ['À propos', 'Skills', 'Travaux', 'Contact']
+const links = ['À propos', 'Expertise', 'Projets', 'Contact']
 const hrefs = ['#about', '#skills', '#work', '#contact']
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);

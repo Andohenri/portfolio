@@ -4,11 +4,11 @@ import { SiClerk, SiDocker, SiExpo, SiExpress, SiFacebook, SiFlutter, SiJavascri
 
 
 export const stats = [
-  { num: 1, suffix: '+', label: 'An d\'expérience' },
-  { num: 8, suffix: '+', label: 'Projets livrés' },
-  { num: 3, suffix: 'k+', label: 'Commits GitHub' },
-  { num: 8, suffix: '', label: 'Technos maîtrisées' },
-];
+  { num: 10, suffix: '+', label: 'Projets réalisés' },
+  { num: 7, suffix: '+', label: 'Technologies maîtrisées' },
+  { num: 100, suffix: '%', label: 'Engagement projet' },
+  { num: 24, suffix: 'h', label: 'Temps de réponse' },
+]
 
 export const codeLines = [
   { w: '38%', color: '#61dafb', op: 0.85, x: 0 },
@@ -51,25 +51,25 @@ export const skills = [
 export const services: Service[] = [
   {
     num: '01',
-    name: 'DÉVELOPPEMENT FULLSTACK',
-    desc: "Création d'applications web complètes de A à Z : interfaces React/Next.js côté client, APIs Express/Node.js côté serveur, bases de données PostgreSQL ou MongoDB. Typage strict TypeScript et bonnes pratiques inclus.",
+    name: 'DÉVELOPPEMENT D’APPLICATIONS WEB',
+    desc: "Conception et développement d’applications web complètes, de l’interface utilisateur jusqu’au système côté serveur. Je crée des solutions performantes, sécurisées et évolutives, adaptées aux besoins spécifiques de votre projet.",
   },
   {
     num: '02',
-    name: 'APIS & BASES DE DONNÉES',
-    desc: "Conception et développement d'APIs RESTful robustes avec Node.js/Express. Modélisation de bases de données relationnelles (PostgreSQL, MySQL) et NoSQL (MongoDB), migrations, ORM Prisma.",
+    name: 'APIS & GESTION DE DONNÉES',
+    desc: "Création de systèmes backend robustes permettant la communication entre différentes applications. Conception et organisation de bases de données fiables pour garantir la performance, la sécurité et la cohérence des données.",
   },
   {
     num: '03',
-    name: 'AUTOMATISATION N8N',
-    desc: "Mise en place de workflows d'automatisation avec n8n : intégrations d'APIs tierces, automatisation de tâches répétitives, traitement de données, notifications et pipelines no-code/low-code.",
+    name: 'AUTOMATISATION DE PROCESSUS',
+    desc: "Mise en place de solutions d’automatisation pour réduire les tâches répétitives, améliorer la productivité et connecter différents outils entre eux. Idéal pour optimiser vos workflows et gagner du temps.",
   },
   {
     num: '04',
-    name: 'DÉPLOIEMENT DOCKER',
-    desc: "Containerisation d'applications avec Docker et Docker Compose. Configuration d'environnements reproductibles, déploiement sur serveurs VPS, initiation à l'orchestration Kubernetes.",
+    name: 'DÉPLOIEMENT & MISE EN PRODUCTION',
+    desc: "Préparation et mise en ligne de vos applications dans des environnements fiables et sécurisés. Configuration d’infrastructures pour assurer stabilité, performance et facilité de maintenance.",
   },
-]
+];
 
 export const projects: Project[] = [
   {
@@ -188,7 +188,7 @@ export const projects: Project[] = [
 
 
 export const socials: Social[] = [
-  { icon: SiLinkedin, href: 'https://www.linkedin.com/in/ando-henri-razafinatoandro-877041279', label: 'LinkedIn' },
+  { icon: SiLinkedin, href: 'https://www.linkedin.com/in/ando-henri', label: 'LinkedIn' },
   { icon: SiWhatsapp, href: 'tel:+261349756246', label: 'WhatsApp' },
   { icon: SiFacebook, href: 'https://web.facebook.com/ando.henri.03/', label: 'Facebook' },
 ]
