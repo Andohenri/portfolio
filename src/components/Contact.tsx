@@ -3,7 +3,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { MdMailOutline } from 'react-icons/md'
-import { fields, socials } from '../constants'
+import { getPortfolioContent, socials } from '../constants'
+import { useLocale } from '../context/LocaleContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,6 +16,9 @@ const inputCls = [
 ].join(' ')
 
 const Contact = () => {
+  const { locale } = useLocale()
+  const copy = getPortfolioContent(locale).contact
+  const fields = getPortfolioContent(locale).fields
   const sectionRef = useRef<HTMLElement>(null)
   const bgTextRef = useRef<HTMLSpanElement>(null)
 
@@ -64,8 +68,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Logique d'envoi du formulaire (ex: via une API)
-    alert('Message envoyé ! (fonctionnalité à implémenter)')
+    alert(copy.alert)
   }
 
   return (
@@ -80,19 +83,19 @@ const Contact = () => {
         className="pointer-events-none hidden md:block absolute top-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
         style={{ letterSpacing: '.02em' }}
       >
-        HELLO !
+        {locale === 'fr' ? 'BONJOUR !' : 'HELLO !'}
       </span>
 
       {/* ── LEFT ── */}
       <div className="relative z-10">
-        <p className="section-label text-red">Contact</p>
+        <p className="section-label text-red">{copy.label}</p>
 
         <h2
           className="c-heading font-display text-white leading-none mb-8"
           style={{ fontSize: 'clamp(2.8rem,6vw,5.5rem)', opacity: 0 }}
         >
-          TRAVAILLONS<br />
-          <span className="text-red">ENSEMBLE.</span>
+          {copy.title[0]}<br />
+          <span className="text-red">{copy.title[1]}</span>
         </h2>
 
         <div className="c-info flex flex-col gap-6">
@@ -103,6 +106,7 @@ const Contact = () => {
                        pb-4 text-sm hover:text-red
                        transition-colors duration-300 w-fit hoverable"
             style={{ opacity: 0 }}
+            aria-label={copy.emailLabel}
           >
             <MdMailOutline size={18} />
             andohenrirazafinatoandro@gmail.com
@@ -180,14 +184,14 @@ const Contact = () => {
             htmlFor="message"
             className="block text-white/40 text-xs tracking-[.12em] uppercase mb-2"
           >
-            Message
+            {copy.messageLabel}
           </label>
           <textarea
             id="message"
             name="message"
             rows={5}
             className={inputCls}
-            placeholder="Décrivez votre projet…"
+            placeholder={copy.messagePlaceholder}
           />
         </div>
 
@@ -199,7 +203,7 @@ const Contact = () => {
                      hover:bg-[#e02d0f] hoverable"
           style={{ opacity: 0 }}
         >
-          Envoyer le message →
+          {copy.submit}
         </button>
       </form>
     </section>

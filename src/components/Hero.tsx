@@ -1,11 +1,15 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useRef, useEffect } from "react"
+import { getPortfolioContent } from "../constants"
+import { useLocale } from "../context/LocaleContext"
 
 // ─── Lerp utilitaire ───────────────────────────────────────────────────────────
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
 const Hero = () => {
+  const { locale } = useLocale()
+  const copy = getPortfolioContent(locale).hero
   const sectionRef = useRef<HTMLDivElement>(null)
   const ghostRef = useRef<HTMLHeadingElement>(null)
   const badge1Ref = useRef<HTMLDivElement>(null)
@@ -166,7 +170,7 @@ const Hero = () => {
                    px-4 py-1.5 text-xs font-semibold tracking-widest uppercase shadow-lg"
         style={{ opacity: 0, willChange: 'transform' }}
       >
-        Développeur Web et mobile
+        {copy.badges[0]}
       </div>
       <div
         ref={badge2Ref}
@@ -174,7 +178,7 @@ const Hero = () => {
                    px-4 py-1.5 text-xs font-semibold tracking-widest uppercase shadow-lg"
         style={{ opacity: 0, willChange: 'transform' }}
       >
-        Créateur de solutions
+        {copy.badges[1]}
       </div>
 
       {/* ── LEFT ── */}
@@ -187,7 +191,7 @@ const Hero = () => {
           style={{ opacity: 0 }}
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
-          Disponible pour projets
+          {copy.availability}
         </div>
 
         <p
@@ -208,9 +212,9 @@ const Hero = () => {
             willChange: 'clip-path',
           }}
         >
-          DÉVELOPPEUR<br />
-          <span className="text-red">WEB et MOBILE, </span>
-          SUR MESURE.
+          {copy.title[0]}<br />
+          <span className="text-red">{copy.title[1]} </span>
+          {copy.title[2]}
         </h2>
 
         <div
@@ -219,8 +223,7 @@ const Hero = () => {
           style={{ opacity: 0 }}
         >
           <p className="text-sm leading-relaxed text-gray-500 mb-4">
-            Je conçois des applications web et mobile modernes, rapides et adaptées à vos besoins.
-            De l'idée à la mise en ligne, je vous accompagne pour créer des solutions fiables et évolutives.
+            {copy.description}
           </p>
           <p className="text-xs text-muted mb-4">andohenrirazafinatoandro@gmail.com</p>
           <a
@@ -230,7 +233,7 @@ const Hero = () => {
                        transition-all duration-300 hover:-translate-y-0.5
                        hover:shadow-[0_8px_24px_rgba(255,59,31,.35)]"
           >
-            Démarrer un projet
+            {copy.cta}
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -292,7 +295,7 @@ const Hero = () => {
         style={{ opacity: 0 }}
       >
         <span className="block w-10 h-px bg-muted" />
-        Explorer ↓
+        {copy.scroll} ↓
       </div>
     </section>
   )

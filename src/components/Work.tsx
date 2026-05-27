@@ -2,13 +2,16 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { projects, services } from '../constants'
+import { getPortfolioContent } from '../constants'
+import { useLocale } from '../context/LocaleContext'
 import { ServiceItem } from './ServiceItem'
 import { ProjectCard } from './ProjectCard'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Work = () => {
+  const { locale } = useLocale()
+  const copy = getPortfolioContent(locale).work
   const sectionRef = useRef<HTMLElement>(null)
   const servicesRef = useRef<HTMLDivElement>(null)
 
@@ -90,16 +93,16 @@ const Work = () => {
       <div className="work-header flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-12 md:mb-16">
         <div>
           <p className="section-label">
-            Projets
+            {copy.label}
           </p>
           <h2 className="font-display leading-none"
             style={{ fontSize: 'clamp(2rem,5vw,4rem)' }}>
-            MES <span className="text-red">PROJETS</span>
+            {copy.title[0]} <span className="text-red">{copy.title[1]}</span>
           </h2>
         </div>
         <div className="flex flex-col gap-3 sm:items-end">
           <p className="hidden md:block text-black/50 text-xs leading-relaxed text-right max-w-xs">
-            Une sélection de projets conçus pour allier performance, expérience utilisateur et impact visuel.
+            {copy.description}
           </p>
           <a
             href="https://github.com/andohenri"
@@ -112,7 +115,7 @@ const Work = () => {
                        hover:bg-red hover:-translate-y-0.5
                        hover:shadow-[0_8px_24px_rgba(255,59,31,.3)]"
           >
-            GitHub
+            {copy.github}
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -122,7 +125,7 @@ const Work = () => {
 
       {/* ── Grid projets ── */}
       <div className="work-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 mb-20 md:mb-28">
-        {projects.map((p, i) => (
+        {copy.projects.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
         ))}
       </div>
@@ -131,16 +134,16 @@ const Work = () => {
       <div ref={servicesRef}>
         <div className="services-header mb-8 md:mb-10">
           <p className="section-label flex items-center gap-2.5 mb-2.5">
-            Services
+            {copy.servicesLabel}
           </p>
           <h2 className="font-display leading-none"
             style={{ fontSize: 'clamp(1.8rem,4vw,3.4rem)' }}>
-            CE QUE JE <span className="text-red">PROPOSE</span>
+            {copy.servicesTitle[0]} <span className="text-red">{copy.servicesTitle[1]}</span>
           </h2>
         </div>
 
         <div>
-          {services.map(s => (
+          {copy.services.map(s => (
             <ServiceItem key={s.num} item={s} />
           ))}
         </div>

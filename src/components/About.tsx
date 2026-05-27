@@ -2,7 +2,8 @@ import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { codeLines, stats, techBadges } from '../constants'
+import { codeLines, getPortfolioContent, techBadges } from '../constants'
+import { useLocale } from '../context/LocaleContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -75,6 +76,9 @@ const TerminalCard = () => {
 
 // ─── About ────────────────────────────────────────────────────────────────────
 const About = () => {
+  const { locale } = useLocale()
+  const copy = getPortfolioContent(locale).about
+  const stats = getPortfolioContent(locale).stats
   const sectionRef = useRef<HTMLElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const statRefs = useRef<Array<HTMLSpanElement | null>>([])
@@ -179,26 +183,23 @@ const About = () => {
       {/* ────────── LEFT ────────── */}
       <div>
         <p className="about-label" style={{ opacity: 0 }}>
-          À propos de moi
+          {copy.label}
         </p>
 
         <h2
           className="about-heading font-display leading-none mb-7"
           style={{ fontSize: 'clamp(2.5rem,5vw,4.5rem)', opacity: 0 }}
         >
-          CRÉER,<br />
-          OPTIMISER,<br />
-          <span className="text-red">FAIRE ÉVOLUER.</span>
+          {copy.title[0]}<br />
+          {copy.title[1]}<br />
+          <span className="text-red">{copy.title[2]}</span>
         </h2>
 
         <p
           className="about-text text-gray-500 leading-relaxed mb-12 max-w-lg"
           style={{ opacity: 0 }}
         >
-          Je suis <strong className="text-dark">RAZAFINATOANDRO Ando Henri</strong>, développeur
-          spécialisé dans la conception d'applications web et mobiles sur mesure.
-          J'aide les entreprises et entrepreneurs à transformer leurs idées en solutions
-          digitales performantes, fiables et évolutives.
+          {copy.description}
         </p>
 
         {/* ── Stats ── */}
@@ -235,7 +236,7 @@ const About = () => {
           style={{ opacity: 0 }}
         >
           <span className="text-green-400 text-xs font-bold tracking-widest uppercase">
-            ● Disponible maintenant
+            ● {copy.badge}
           </span>
         </div>
       </div>

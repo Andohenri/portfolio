@@ -9,26 +9,29 @@ import About from "./components/About"
 import Skills from "./components/Skills"
 import Work from "./components/Work"
 import Contact from "./components/Contact"
+import { LocaleProvider } from "./context/LocaleProvider"
 
 const App = () => {
   const [loaded, setLoaded] = useState(false)
   return (
-    <>
-      <div className="noise" />
-      <Cursor />
-      {!loaded && <Loader onComplete={() => setLoaded(true)} />}
-      <main>
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Work />
-        <Contact />
+    <LocaleProvider>
+      <>
+        <div className="noise" />
+        <Cursor />
+        {!loaded && <Loader onComplete={() => setLoaded(true)} />}
+        <main>
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Work />
+          <Contact />
 
-        <Footer />
-      </main>
-      <SpeedInsights />
-    </>
+          <Footer />
+        </main>
+        <SpeedInsights />
+      </>
+    </LocaleProvider>
   )
 }
 

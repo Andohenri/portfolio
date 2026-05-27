@@ -2,20 +2,14 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useGSAP } from '@gsap/react'
-import { skills } from '../constants'
+import { getPortfolioContent } from '../constants'
+import { useLocale } from '../context/LocaleContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
-
-const tags = [
-  'HTML / CSS', 'Gsap animation',
-  'n8n', 'REST API', 'Git', 'Tailwind CSS',
-  'Prisma', 'JWT', 'Linux', 'CI/CD', 'Agile / Scrum',
-  'WebSockets', 'Testing', 'Microservices',
-  'Caching (Redis)', 'Queues (RabbitMQ)'
-]
-
 const Skills = () => {
+  const { locale } = useLocale()
+  const copy = getPortfolioContent(locale).skills
   const sectionRef = useRef(null)
   const barRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -38,7 +32,7 @@ const Skills = () => {
           onEnter() {
             setTimeout(() => {
               barRefs.current.forEach((bar, i) => {
-                if (bar) bar.style.width = skills[i].pct + '%'
+                if (bar) bar.style.width = copy.items[i].pct + '%'
               })
             }, 500)
           },
@@ -69,21 +63,20 @@ const Skills = () => {
       {/* Header */}
       <div className="sk-header flex justify-between items-end mb-16">
         <div>
-          <p className="section-label">Expertise</p>
+          <p className="section-label">{copy.label}</p>
           <h2 className="font-display text-white leading-none"
             style={{ fontSize: 'clamp(2.5rem,5vw,4.2rem)' }}>
-            CE QUE JE <span className="text-red">MAÎTRISE</span>
+            {copy.title[0]} <span className="text-red">{copy.title[1]}</span>
           </h2>
         </div>
         <p className="hidden md:block text-white/40 text-sm leading-relaxed text-right max-w-xs">
-          Conception, développement et optimisation de solutions digitales modernes,
-          pensées pour la performance et l’évolutivité.
+          {copy.description}
         </p>
       </div>
 
       {/* Grid */}
       <div className="skills-grid grid grid-cols-2 md:grid-cols-5 z-10 gap-4">
-        {skills.map((s, i) => (
+        {copy.items.map((s, i) => (
           <div key={s.name}
             className="skill-card group
                         bg-linear-to-b from-white/5 to-transparent
@@ -119,7 +112,7 @@ const Skills = () => {
       {/* Marquee */}
       <div className="overflow-hidden mt-16 pt-6 border-t border-white/[.07]">
         <div className="marquee-track flex gap-7 max-w-max">
-          {[...tags, ...tags].map((tag, i) => (
+          {[...copy.tags, ...copy.tags].map((tag, i) => (
             <div key={i} className="flex items-center gap-2 text-xs font-semibold tracking-[.12em] uppercase text-white/30 whitespace-nowrap">
               <span className="text-red">✦</span>{tag}
             </div>
