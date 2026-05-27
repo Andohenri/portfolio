@@ -16,8 +16,6 @@ const Navbar = () => {
     ? convertToDirectDownload(import.meta.env.VITE_CV_LINK)
     : '#'
 
-  const flagEmoji = locale === 'fr' ? '🇫🇷' : '🇬🇧'
-
   useGSAP(() => {
     const navTween = gsap.timeline({
       scrollTrigger: {
