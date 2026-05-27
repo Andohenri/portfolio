@@ -52,7 +52,7 @@ const Contact = () => {
 
     gsap.to(bgTextRef.current,
       {
-        xPercent: 100,
+        xPercent: -50,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -80,7 +80,7 @@ const Contact = () => {
       {/* ── BG ghost text ── */}
       <span
         ref={bgTextRef}
-        className="pointer-events-none hidden md:block absolute top-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
+        className="pointer-events-none hidden md:block absolute top-1/2 left-1/2 text-[18vw] font-display whitespace-nowrap text-white/[.018]"
         style={{ letterSpacing: '.02em' }}
       >
         {locale === 'fr' ? 'BONJOUR !' : 'HELLO !'}
