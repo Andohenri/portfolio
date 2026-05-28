@@ -19,7 +19,6 @@ const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const rightRef = useRef<HTMLDivElement>(null)
-  const orbRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -30,7 +29,6 @@ const Hero = () => {
     let rafId: number
     let isVisible = true
     let mx = 0, my = 0
-    let orbX = 0, orbY = 0
     let b1X = 0, b1Y = 0
     let b2X = 0, b2Y = 0
 
@@ -45,13 +43,6 @@ const Hero = () => {
       if (!isVisible) {
         rafId = requestAnimationFrame(tick)
         return
-      }
-
-      orbX = lerp(orbX, mx * 36, 0.055)
-      orbY = lerp(orbY, my * 20, 0.055)
-      if (orbRef.current) {
-        orbRef.current.style.transform =
-          `translate(calc(-50% + ${orbX}px), calc(-50% + ${orbY}px))`
       }
 
       b1X = lerp(b1X, mx * -16, 0.045)
@@ -112,10 +103,6 @@ const Hero = () => {
         { opacity: 0, y: 38 },
         { opacity: 1, y: 0, duration: 0.75 }, 0.98)
 
-      .fromTo(orbRef.current,
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 0.9, duration: 1.2, ease: 'elastic.out(1, 0.62)' }, 0.15)
-
       .fromTo(rightRef.current,
         { opacity: 0, x: 55 },
         { opacity: 1, x: 0, duration: 1.0 }, 0.3)
@@ -154,26 +141,21 @@ const Hero = () => {
       className="relative min-h-screen grid md:grid-cols-2 overflow-hidden"
     >
       {/* ── Ghost watermark ── */}
-      <h1
-        ref={ghostRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                   font-display text-center w-full z-0 text-dark leading-none"
-        style={{ fontSize: 'clamp(6rem, 13vw, 12rem)', letterSpacing: '.02em', opacity: 0 }}
+      <h1 ref={ghostRef} className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-center w-full z-0 leading-none"
+        style={{ fontSize: 'clamp(6rem, 13vw, 12rem)', letterSpacing: '.02em', opacity: 0,  WebkitTextFillColor: 'transparent', WebkitTextStroke: '5px rgba(255,59,31,0.50)' }}
       >
         &lt;BUILD /&gt;
       </h1>
 
       {/* ── Badges flottants — magnetic via rAF ── */}
-      <div
-        ref={badge1Ref}
-        className="absolute z-20 bg-white rounded-full top-[50%] left-[7%] md:top-[31%] md:left-[7%]
+      <div ref={badge1Ref}
+        className="absolute z-20 bg-white rounded-full bottom-[50%] left-[7%] md:bottom-[17%] md:left-[55%]
                    px-4 py-1.5 text-xs font-semibold tracking-widest uppercase shadow-lg"
         style={{ opacity: 0, willChange: 'transform' }}
       >
         {copy.badges[0]}
       </div>
-      <div
-        ref={badge2Ref}
+      <div ref={badge2Ref}
         className="absolute z-20 bg-white rounded-full top-[25%] right-[5%] md:top-[17%] md:right-[5%]
                    px-4 py-1.5 text-xs font-semibold tracking-widest uppercase shadow-lg"
         style={{ opacity: 0, willChange: 'transform' }}
@@ -183,7 +165,6 @@ const Hero = () => {
 
       {/* ── LEFT ── */}
       <div className="relative z-10 flex flex-col justify-center px-16 pb-16 pt-20 gap-3">
-
         <div
           ref={tagRef}
           className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5
@@ -242,56 +223,84 @@ const Hero = () => {
       </div>
 
       {/* ── RIGHT ── */}
-      <div
-        ref={rightRef}
+      <div ref={rightRef}
         className="relative hidden md:flex items-center justify-center overflow-hidden"
         style={{ opacity: 0 }}
       >
-        {/* Orb magnétique — déplacé par rAF lerp */}
+        {/* Anneau orbitant */}
         <div
-          ref={orbRef}
-          className="absolute rounded-full z-0"
+          className="absolute z-10 rounded-full pointer-events-none top-1/2 left-1/2"
           style={{
-            width: 'clamp(300px,44vw,500px)',
+            width: 'clamp(320px,42vw,480px)',
             aspectRatio: '1',
-            background: 'radial-gradient(circle at 40% 40%, #ff3b1f 0%, #e8280f 55%, #b01f0b 100%)',
-            top: '50%', left: '50%',
-            transform: 'translate(-50%,-50%)',
-            opacity: 0,
-            willChange: 'transform',
-            backdropFilter: 'blur(100px)',
+            border: '0.5px solid rgba(255,59,31,0.25)',
+            animation: 'ringRotate 14s linear infinite',
+          }}
+        >
+          <div
+            className="absolute rounded-full -top-1 left-1/2 -translate-x-1/2"
+            style={{
+              width: '8px', height: '8px',
+              background: '#ff3b1f',
+              boxShadow: '0 0 12px rgba(255,59,31,0.9), 0 0 24px rgba(255,59,31,0.4)',
+            }}
+          />
+        </div>
+
+        {/* Anneau extérieur */}
+        <div
+          className="absolute z-10 rounded-full pointer-events-none top-1/2 left-1/2"
+          style={{
+            width: 'clamp(300px,38vw,430px)',
+            aspectRatio: '1',
+            border: '0.5px solid rgba(255,59,31,0.08)',
+            animation: 'ringRotate 22s linear infinite reverse',
           }}
         />
 
-        <div className="relative z-10 w-full h-full flex items-center justify-center">
-          <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"
-            className="w-full" style={{ height: '90vh' }}>
-            <defs>
-              <radialGradient id="hg" cx="50%" cy="35%" r="55%">
-                <stop offset="0%" stopColor="#1a1a1a" />
-                <stop offset="100%" stopColor="#080808" />
-              </radialGradient>
-            </defs>
-            <ellipse cx="200" cy="290" rx="170" ry="270" fill="url(#hg)" opacity=".9" />
-            <circle cx="200" cy="145" r="75" fill="#111" opacity=".95" />
-            <ellipse cx="200" cy="95" rx="90" ry="75" fill="#0a0a0a" opacity=".9" />
-            <ellipse cx="155" cy="120" rx="45" ry="55" fill="#080808" opacity=".85" />
-            <ellipse cx="245" cy="120" rx="45" ry="55" fill="#080808" opacity=".85" />
-            <ellipse cx="200" cy="75" rx="70" ry="50" fill="#0d0d0d" opacity=".9" />
-            <rect x="168" y="152" width="26" height="16" rx="6" fill="none" stroke="#ff3b1f" strokeWidth="2.5" />
-            <rect x="206" y="152" width="26" height="16" rx="6" fill="none" stroke="#ff3b1f" strokeWidth="2.5" />
-            <line x1="194" y1="160" x2="206" y2="160" stroke="#ff3b1f" strokeWidth="2" />
-            <line x1="168" y1="160" x2="160" y2="158" stroke="#ff3b1f" strokeWidth="2" />
-            <line x1="232" y1="160" x2="240" y2="158" stroke="#ff3b1f" strokeWidth="2" />
-          </svg>
+        {/* Logo */}
+        <div className="relative z-20 flex items-center justify-center mt-20">
+          <img
+            src="/hero-logo.png"
+            alt="logo"
+            className="w-auto"
+            style={{
+              filter: `
+                drop-shadow(0 0 18px rgba(255,59,31,0.7))
+                drop-shadow(0 0 48px rgba(255,59,31,0.35))
+                drop-shadow(0 0 90px rgba(255,59,31,0.15))
+              `,
+              animation: 'logoFloat 4s ease-in-out infinite',
+            }}
+          />
         </div>
+
+        <style>{`
+          @keyframes ringRotate {
+            from { transform: translate(-50%,-50%) rotate(0deg); }
+            to   { transform: translate(-50%,-50%) rotate(360deg); }
+          }
+          @keyframes logoFloat {
+            0%, 100% {
+              transform: translateY(0px);
+              filter: drop-shadow(0 0 18px rgba(255,59,31,0.7))
+                      drop-shadow(0 0 48px rgba(255,59,31,0.35))
+                      drop-shadow(0 0 90px rgba(255,59,31,0.15));
+            }
+            50% {
+              transform: translateY(-14px);
+              filter: drop-shadow(0 0 28px rgba(255,80,31,0.9))
+                      drop-shadow(0 0 65px rgba(255,59,31,0.5))
+                      drop-shadow(0 0 110px rgba(255,59,31,0.2));
+            }
+          }
+        `}</style>
       </div>
 
       {/* ── Scroll hint ── */}
       <div
         ref={scrollRef}
-        className="absolute bottom-8 left-16 flex items-center gap-3 text-xs
-                   font-medium tracking-[.12em] uppercase text-muted z-10"
+        className="absolute bottom-8 left-16 flex items-center gap-3 text-xs font-medium tracking-[.12em] uppercase text-muted z-10"
         style={{ opacity: 0 }}
       >
         <span className="block w-10 h-px bg-muted" />
